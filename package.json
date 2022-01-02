@@ -1,0 +1,41 @@
+{
+  "name": "my-site",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"npm run tailwind:process\" \"npm run serve\"",
+    "serve": "eleventy --serve",
+    "tailwind:process": "postcss src/scss/global.css --o dist/css/global.css --watch",
+    "build": "",
+    "lint": "eslint '**/*.js'"
+  },
+  "keywords": [],
+  "author": "Maxim Slipenko",
+  "license": "MIT",
+  "lint-staged": {
+    "*.js": "eslint --cache --fix",
+    "*.css": "stylelint --fix"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged",
+    "preserveUnused": true
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^0.12.1",
+    "autoprefixer": "^10.4.1",
+    "concurrently": "^6.5.1",
+    "cssnano": "^5.0.14",
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.2.0",
+    "lint-staged": "^12.1.4",
+    "postcss": "^8.4.5",
+    "postcss-cli": "^9.1.0",
+    "prettier": "2.5.1",
+    "simple-git-hooks": "^2.7.0",
+    "tailwindcss": "^3.0.8"
+  }
+}
