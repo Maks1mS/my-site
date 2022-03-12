@@ -1,6 +1,9 @@
+const svgContents = require('eleventy-plugin-svg-contents')
 const htmlnano = require('htmlnano')
 
 module.exports = function (eleventyConfig) {
+  eleventyConfig.addPlugin(svgContents)
+
   if (process.env.NODE_ENV === 'production') {
     eleventyConfig.addTransform('html-min', (content, outputPath) => {
       if (outputPath) {

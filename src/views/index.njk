@@ -1,0 +1,42 @@
+<main class="h-screen w-screen flex flex-col md:flex-row bg-blue-100 overflow-hidden">
+    <div class="w-full flex flex-col justify-center items-center h-2/5 md:h-full lg:px-10">
+        <div class="info">
+            <h1 class="text-6xl md:text-5xl lg:text-6xl parallax" value="2">Maxim Slipenko</h1>
+            <h2 class="text-3xl parallax" value="3">developer</h2>
+        </div>
+    </div>
+    <div class="flex relative h-screen w-full">
+        <div class="block absolute h-full w-full bg-gray-900 lg:rotate-12 lg:translate-x-[0] lg:h-[200vh] lg:w-[200vw]"></div>
+        <div class="absolute w-full text-center xl:left-1/6 h-full">
+            <ul class="pt-6 space-y-6 flex flex-col grow justify-evenly h-full justify-items-center lg:ml-auto lg:w-5/6 xl:mx-auto">
+                {% for x in links %}
+                <li>
+                    <a 
+                        href="{{x.url}}"
+                        class="px-2 pb-2 text-5xl text-white fill-white rounded-md focus-visible:ring-4 ring-blue-600 outline-none transition-colors duration-200 active:text-blue-600 active:fill-blue-600 hover:bg-blue-100 hover:text-gray-900 hover:fill-gray-900"
+                    >
+                        {{ x.icon | svgContents("h-10 w-10 inline-block") | safe }}
+                        <span class="underline">
+                            {{x.title}}
+                        </span>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</main>
+
+<script>
+    function parallax() {
+        this.querySelectorAll(".parallax").forEach((shift) => {
+            const position = shift.getAttribute("value");
+            const x = (window.innerWidth - event.pageX * position) / 90;
+            const y = (window.innerHeight - event.pageY * position) / 90;
+
+            shift.style.transform = `translateX(${x}px) translateY(${y}px)`;
+        });
+    }
+
+    document.addEventListener("mousemove", parallax);
+</script>
