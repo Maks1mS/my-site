@@ -1,6 +1,6 @@
 <main class="h-screen w-screen flex flex-col md:flex-row bg-blue-100 overflow-hidden">
     <div class="w-full flex flex-col justify-center items-center h-2/5 md:h-full lg:px-10">
-        <div class="info">
+        <div class="info z-10">
             <h1 class="text-6xl md:text-5xl lg:text-6xl parallax" value="2">Maxim Slipenko</h1>
             <h2 class="text-3xl parallax" value="3">developer</h2>
         </div>
@@ -10,7 +10,7 @@
         <div class="absolute w-full text-center xl:left-1/6 h-full">
             <ul class="pt-6 space-y-6 flex flex-col grow justify-evenly h-full justify-items-center lg:ml-auto lg:w-5/6 xl:mx-auto">
                 {% for x in links %}
-                <li>
+                <li class="z-10">
                     <a 
                         href="{{x.url}}"
                         class="px-2 pb-2 text-5xl text-white fill-white rounded-md focus-visible:ring-4 ring-blue-600 outline-none transition-colors duration-200 active:text-blue-600 active:fill-blue-600 hover:bg-blue-100 hover:text-gray-900 hover:fill-gray-900"
@@ -27,6 +27,8 @@
     </div>
 </main>
 
+<div id="pointer-circle" class="absolute top-0 left-0 pointer-events-none h-14 w-14 bg-blue-100 rounded-full z-0"></div>
+
 <script>
     function parallax() {
         this.querySelectorAll(".parallax").forEach((shift) => {
@@ -36,6 +38,15 @@
 
             shift.style.transform = `translateX(${x}px) translateY(${y}px)`;
         });
+
+
+
+        const circle = document.getElementById('pointer-circle')
+
+        const x = (event.pageX);
+        const y = (event.pageY);
+
+        circle.style.transform = `translateX(calc(${x}px - 50%)) translateY(calc(${y}px - 50%))`;
     }
 
     document.addEventListener("mousemove", parallax);
