@@ -1,7 +1,7 @@
 <main class="h-screen w-screen flex flex-col md:flex-row bg-blue-100 overflow-hidden">
     <div class="w-full flex flex-col justify-center items-center h-2/5 md:h-full lg:px-10">
         <div class="info z-10">
-            <h1 class="text-6xl md:text-5xl lg:text-6xl parallax" value="2">Maxim Slipenko</h1>
+            <h1 class="text-5xl md:text-5xl lg:text-6xl parallax" value="2">Maxim Slipenko</h1>
             <h2 class="text-3xl parallax" value="3">developer</h2>
         </div>
     </div>
@@ -36,6 +36,8 @@
 </style>
 
 <script>
+    const isMobile = navigator.userAgentData.mobile;
+
     function parallax() {
         this.querySelectorAll(".parallax").forEach((shift) => {
             const position = shift.getAttribute("value");
@@ -55,5 +57,7 @@
         circle.style.transform = `translateX(calc(${x}px - 50%)) translateY(calc(${y}px - 50%))`;
     }
 
-    document.addEventListener("mousemove", parallax);
+    if (!isMobile) {
+        document.addEventListener("mousemove", parallax);
+    }
 </script>
