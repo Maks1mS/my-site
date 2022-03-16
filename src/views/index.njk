@@ -36,7 +36,10 @@
 </style>
 
 <script>
-    const isMobile = navigator.userAgentData.mobile;
+    function isMobile() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+
 
     function parallax() {
         this.querySelectorAll(".parallax").forEach((shift) => {
@@ -57,7 +60,8 @@
         circle.style.transform = `translateX(calc(${x}px - 50%)) translateY(calc(${y}px - 50%))`;
     }
 
-    if (!isMobile) {
+
+    if (!isMobile()) {
         document.addEventListener("mousemove", parallax);
     }
 </script>
